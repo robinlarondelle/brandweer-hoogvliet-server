@@ -39,7 +39,7 @@ app.use(bodyParser.json())
 app.use(morgan("dev"))
 
 //response is coming from angular
-app.use(cors({origin: `http://localhost:4200`}))
+app.use(cors({origin: `https://robinlarondelle.github.io/brandweer-hoogvliet-page/`}))
 app.use(passport.initialize())
 
 app.use("/api", authenticationRoutes)

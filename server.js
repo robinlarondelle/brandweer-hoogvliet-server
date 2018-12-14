@@ -24,14 +24,14 @@ const app = express()
 
 
 if(process.env.NODE_ENV !== "test") {
-  mongoose.connect(cfg.DB_URL, {
+  mongoose.connect(process.env.DB_URL, {
     useNewUrlParser: true,
     useFindAndModify: false,
     useCreateIndex: true
   })
 
   mongoose.connection
-  .once('open', () => console.log("Opened local DB\n"))
+  .once('open', () => console.log("Opened cloud DB\n"))
   .on('error', (error) => console.warn("Error", error))
 }
 

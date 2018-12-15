@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "start": "SET NODE_ENV=development& nodemon -r dotenv/config server.js dotenv_config_path=./src/config/dev.enviroment.env",
+    "local": "SET NODE_ENV=local& nodemon -r dotenv/config server.js",
+    "cloud": "SET NODE_ENV=cloud& nodemon -r dotenv/config server.js",
+    "test-cloud": "SET NODE_ENV=test-cloud& nodemon -r dotenv/config --exec mocha --recursive -R spec",
     "test": "SET NODE_ENV=test& nodemon -r dotenv/config --exec mocha --recursive -R spec"
   },
   "repository": {

@@ -9,7 +9,7 @@ before("Connect to MongoDB", done => {
     })
   
     mongoose.connection
-    .once('open', () => console.log("Opened local DB\n"))
+    .once('open', () => console.log("Opened local Test-DB\n"))
     .on('error', (error) => console.warn("Error", error))
     
   } else if (process.env.NODE_ENV === "test-cloud") {
@@ -20,7 +20,7 @@ before("Connect to MongoDB", done => {
     })
   
     mongoose.connection
-    .once('open', () => console.log("Opened cloud DB\n"))
+    .once('open', () => console.log("Opened cloud Test-DB\n"))
     .on('error', (error) => console.warn("Error", error))
   }
 })

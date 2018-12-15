@@ -4,77 +4,103 @@ const server = require("../server")
 const Application = require("../src/models/application.model")
 
 const token = process.env.TOKEN
+const app1 = new Application({
+  "name": {
+    "firstname": "Robin",
+    "lastname": "Rondelle"
+  },
+  "birthday": new Date(1998, 08, 24),
+  "address": {
+    "street": "Beugstraat",
+    "number": "68",
+    "city": "Hoogvliet",
+    "zipcode": "3192GA"
+  },
+  "email": "robinlarondelle@hotmail.com",
+  "gender": "male",
+  "phone": "0612445678",
+  "motivation": "motivation here",
+  "files": {
+    "cvFile": "file_here",
+    "motivationFile": "file_here"
+  }
+})
+
+const app2 = new Application({
+  "name": {
+    "firstname": "Robin",
+    "lastname": "Rondelle"
+  },
+  "birthday": new Date(1998, 08, 24),
+  "address": {
+    "street": "Beugstraat",
+    "number": "68",
+    "city": "Hoogvliet",
+    "zipcode": "3192GA"
+  },
+  "email": "robinlarondelle@hotmail.com",
+  "gender": "male",
+  "phone": "0612445678",
+  "motivation": "motivation here",
+  "files": {
+    "cvFile": "file_here",
+    "motivationFile": "file_here"
+  }
+})
+
+const app3 = new Application({
+  "name": {
+    "firstname": "Robin",
+    "lastname": "Rondelle"
+  },
+  "birthday": new Date(1998, 08, 24),
+  "address": {
+    "street": "Beugstraat",
+    "number": "68",
+    "city": "Hoogvliet",
+    "zipcode": "3192GA"
+  },
+  "email": "robinlarondelle@hotmail.com",
+  "gender": "male",
+  "phone": "0612445678",
+  "motivation": "motivation here",
+  "files": {
+    "cvFile": "file_here",
+    "motivationFile": "file_here"
+  }
+})
+
+const applicationPOSTBody = {
+  "name": {
+    "firstname": "Robin",
+    "lastname": "Rondelle"
+  },
+  "birthday": {
+    "day": "23",
+    "month": "september",
+    "year": "1998"
+  },
+  "address": {
+    "street": "Beugstraat",
+    "number": "68",
+    "city": "Hoogvliet",
+    "zipcode": "3192GA"
+  },
+  "email": "robinlarondelle@hotmail.com",
+  "gender": "male",
+  "phone": "0612345678",
+  "motivation": "motivation here",
+  "files": {
+    "cvFile": "file_here",
+    "motivationFile": "file_here"
+  }
+}
 
 describe("A Application", () => {
-  describe("API", () => {
+
+  describe("API endpoint", () => {
 
     it("GET /api/applications should return all applications", done => {
-      const app1 = new Application({
-        "name": {
-          "firstname": "Robin",
-          "lastname": "Rondelle"
-        },
-        "birthday": new Date(1998, 08, 24),
-        "address": {
-          "street": "Beugstraat",
-          "number": "68",
-          "city": "Hoogvliet",
-          "zipcode": "3192GA"
-        },
-        "email": "robinlarondelle@hotmail.com",
-        "gender": "male",
-        "phone": "0612445678",
-        "motivation": "motivation here",
-        "files": {
-          "cvFile": "file_here",
-          "motivationFile": "file_here"
-        }
-      })
-
-      const app2 = new Application({
-        "name": {
-          "firstname": "Robin",
-          "lastname": "Rondelle"
-        },
-        "birthday": new Date(1998, 08, 24),
-        "address": {
-          "street": "Beugstraat",
-          "number": "68",
-          "city": "Hoogvliet",
-          "zipcode": "3192GA"
-        },
-        "email": "robinlarondelle@hotmail.com",
-        "gender": "male",
-        "phone": "0612445678",
-        "motivation": "motivation here",
-        "files": {
-          "cvFile": "file_here",
-          "motivationFile": "file_here"
-        }
-      })
-
-      const app3 = new Application({
-        "name": {
-          "firstname": "Robin",
-          "lastname": "Rondelle"
-        },
-        "birthday": new Date(1998, 08, 24),
-        "address": {
-          "street": "Beugstraat",
-          "number": "68",
-          "city": "Hoogvliet",
-          "zipcode": "3192GA"
-        },
-        "email": "robinlarondelle@hotmail.com",
-        "gender": "male",
-        "phone": "0612445678",
-        "motivation": "motivation here",
-        "files": {
-          "cvFile": "file_here",
-          "motivationFile": "file_here"
-        }
-      })
-
       Promise.all([
         app1.save(),
         app2.save(),
@@ -96,28 +122,6 @@ describe("A Application", () => {
     })
 
     it("GET /api/applications/:id should return one applications", done => {
-      const app1 = new Application({
-        "name": {
-          "firstname": "Robin",
-          "lastname": "Rondelle"
-        },
-        "birthday": new Date(1998, 08, 24),
-        "address": {
-          "street": "Beugstraat",
-          "number": "68",
-          "city": "Hoogvliet",
-          "zipcode": "3192GA"
-        },
-        "email": "robinlarondelle@hotmail.com",
-        "gender": "male",
-        "phone": "0612445678",
-        "motivation": "motivation here",
-        "files": {
-          "cvFile": "file_here",
-          "motivationFile": "file_here"
-        }
-      })
-
       app1.save().then(() => {
         Application.findOne({ _id: app1._id }).then(application => {
           request(server)
@@ -137,33 +141,12 @@ describe("A Application", () => {
     })
 
     it("POST /api/applications should add a application to the db", done => {
+
+      //TODO extend this test and make more solid
+
       request(server)
         .post("/api/applications")
-        .send({
-          "name": {
-            "firstname": "Robin",
-            "lastname": "Rondelle"
-          },
-          "birthday": {
-            "day": "23",
-            "month": "september",
-            "year": "1998"
-          },
-          "address": {
-            "street": "Beugstraat",
-            "number": "68",
-            "city": "Hoogvliet",
-            "zipcode": "3192GA"
-          },
-          "email": "robinlarondelle@hotmail.com",
-          "gender": "male",
-          "phone": "0612345678",
-          "motivation": "motivation here",
-          "files": {
-            "cvFile": "file_here",
-            "motivationFile": "file_here"
-          }
-        })
+        .send(applicationPOSTBody)
         .end((err, res) => {
           Application.find({ email: "robinlarondellle@hotmail.com" }).then(application => {
             assert.exists(application)
@@ -176,72 +159,6 @@ describe("A Application", () => {
     })
 
     it("DELETE /api/applications should delete all applications", done => {
-      const app1 = new Application({
-        "name": {
-          "firstname": "Robin",
-          "lastname": "Rondelle"
-        },
-        "birthday": new Date(1998, 08, 24),
-        "address": {
-          "street": "Beugstraat",
-          "number": "68",
-          "city": "Hoogvliet",
-          "zipcode": "3192GA"
-        },
-        "email": "robinlarondelle@hotmail.com",
-        "gender": "male",
-        "phone": "0612445678",
-        "motivation": "motivation here",
-        "files": {
-          "cvFile": "file_here",
-          "motivationFile": "file_here"
-        }
-      })
-
-      const app2 = new Application({
-        "name": {
-          "firstname": "Robin",
-          "lastname": "Rondelle"
-        },
-        "birthday": new Date(1998, 08, 24),
-        "address": {
-          "street": "Beugstraat",
-          "number": "68",
-          "city": "Hoogvliet",
-          "zipcode": "3192GA"
-        },
-        "email": "robinlarondelle@hotmail.com",
-        "gender": "male",
-        "phone": "0612445678",
-        "motivation": "motivation here",
-        "files": {
-          "cvFile": "file_here",
-          "motivationFile": "file_here"
-        }
-      })
-
-      const app3 = new Application({
-        "name": {
-          "firstname": "Robin",
-          "lastname": "Rondelle"
-        },
-        "birthday": new Date(1998, 08, 24),
-        "address": {
-          "street": "Beugstraat",
-          "number": "68",
-          "city": "Hoogvliet",
-          "zipcode": "3192GA"
-        },
-        "email": "robinlarondelle@hotmail.com",
-        "gender": "male",
-        "phone": "0612445678",
-        "motivation": "motivation here",
-        "files": {
-          "cvFile": "file_here",
-          "motivationFile": "file_here"
-        }
-      })
-
       Promise.all([
         app1.save(),
         app2.save(),
@@ -252,7 +169,7 @@ describe("A Application", () => {
           .set("Authorization", token)
           .end((err, res) => {
             Application.find().then(applications => {
-              assert.isEmpty(applications )
+              assert.isEmpty(applications)
               done()
             })
           })
@@ -260,72 +177,6 @@ describe("A Application", () => {
     })
 
     it("DELETE /api/applications/:id should return one applications", done => {
-      const app1 = new Application({
-        "name": {
-          "firstname": "Robin",
-          "lastname": "Rondelle"
-        },
-        "birthday": new Date(1998, 08, 24),
-        "address": {
-          "street": "Beugstraat",
-          "number": "68",
-          "city": "Hoogvliet",
-          "zipcode": "3192GA"
-        },
-        "email": "robinlarondelle@hotmail.com",
-        "gender": "male",
-        "phone": "0612445678",
-        "motivation": "motivation here",
-        "files": {
-          "cvFile": "file_here",
-          "motivationFile": "file_here"
-        }
-      })
-
-      const app2 = new Application({
-        "name": {
-          "firstname": "Robin",
-          "lastname": "Rondelle"
-        },
-        "birthday": new Date(1998, 08, 24),
-        "address": {
-          "street": "Beugstraat",
-          "number": "68",
-          "city": "Hoogvliet",
-          "zipcode": "3192GA"
-        },
-        "email": "robinlarondelle@hotmail.com",
-        "gender": "male",
-        "phone": "0612445678",
-        "motivation": "motivation here",
-        "files": {
-          "cvFile": "file_here",
-          "motivationFile": "file_here"
-        }
-      })
-
-      const app3 = new Application({
-        "name": {
-          "firstname": "Robin",
-          "lastname": "Rondelle"
-        },
-        "birthday": new Date(1998, 08, 24),
-        "address": {
-          "street": "Beugstraat",
-          "number": "68",
-          "city": "Hoogvliet",
-          "zipcode": "3192GA"
-        },
-        "email": "robinlarondelle@hotmail.com",
-        "gender": "male",
-        "phone": "0612445678",
-        "motivation": "motivation here",
-        "files": {
-          "cvFile": "file_here",
-          "motivationFile": "file_here"
-        }
-      })
-
       Promise.all([
         app1.save(),
         app2.save(),
@@ -335,7 +186,7 @@ describe("A Application", () => {
           .delete("/api/applications/" + app1._id)
           .set("Authorization", token)
           .end((err, res) => {
-            Application.countDocuments().then((count) => {              
+            Application.countDocuments().then((count) => {
               assert.isTrue(count == 2)
               done()
             })

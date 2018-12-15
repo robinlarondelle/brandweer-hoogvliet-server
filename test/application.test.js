@@ -97,10 +97,38 @@ const applicationPOSTBody = {
 }
 
 describe("A Application", () => {
+  describe("Properties", () => {
+    xit("Should save a applicants first, middle and last name", done => {
+      done()
+    })
+
+    xit("Should save a applicants email, gender and birthday", done => {
+      done()
+    })
+
+    xit("Should convert a string as month to the correct month int", done => {
+      done()
+    })
+
+    xit("Should save the applicants address, which includes street, housenum, city and zipcode", done => {
+      done()
+    })
+
+    xit("Should be able to save a motivation and CV file", done => {
+      done()
+    })
+
+    xit("Should only save a valid phone number", done => {
+      done()
+    })
+
+    xit("Should only save a valid email address", done => {
+      done()
+    })
+  })
 
   describe("API endpoint", () => {
-
-    it("GET /api/applications should return all applications", done => {
+    xit("GET /api/applications should return all applications", done => {
       Promise.all([
         app1.save(),
         app2.save(),
@@ -121,7 +149,11 @@ describe("A Application", () => {
       })
     })
 
-    it("GET /api/applications/:id should return one applications", done => {
+    xit("GET /applications should return an error with status 404 when there are no applications in the DB", done => {
+      done()
+    })
+
+    xit("GET /api/applications/:id should return one applications", done => {
       app1.save().then(() => {
         Application.findOne({ _id: app1._id }).then(application => {
           request(server)
@@ -140,7 +172,11 @@ describe("A Application", () => {
       })
     })
 
-    it("POST /api/applications should add a application to the db", done => {
+    xit("GET /applications/ID should return an error with status 404 when there is no application with the specified ID", done => {
+      done()
+    })
+
+    xit("POST /api/applications should add a application to the db", done => {
 
       //TODO extend this test and make more solid
 
@@ -158,7 +194,11 @@ describe("A Application", () => {
         })
     })
 
-    it("DELETE /api/applications should delete all applications", done => {
+    xit("POST/applications should only post an applications if all fields are correct", done => {
+      done()
+    })
+
+    xit("DELETE /api/applications should delete all applications", done => {
       Promise.all([
         app1.save(),
         app2.save(),
@@ -176,7 +216,7 @@ describe("A Application", () => {
       })
     })
 
-    it("DELETE /api/applications/:id should return one applications", done => {
+    xit("DELETE /api/applications/:id should return one applications", done => {
       Promise.all([
         app1.save(),
         app2.save(),
@@ -192,6 +232,10 @@ describe("A Application", () => {
             })
           })
       })
+    })
+
+    xit("DELETE/users should give status 200 even if nothing was deleted", done => {
+      done()
     })
   })
 })

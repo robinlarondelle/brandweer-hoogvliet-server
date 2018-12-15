@@ -36,10 +36,39 @@ const joePOSTBody = {
 }
 
 describe("A User", () => {
+
+  describe("Properties", () => {
+    xit("Should have a firstname, middlename and lastname", done => {
+      done()
+    })
+
+    xit("Should have an email address which needs to be of a valid format", done => {
+      done()
+    })
+
+    xit("Should not contain a password, but a hash and a salt", done => {
+      done()
+    })
+
+    xit("Should have a helper method to validate the password", done => {
+      done()
+    })
+
+    xit("Should have a helper method to set the password", done => {
+      done()
+    })
+
+    xit("Should have a helper method to generate a JWT token", done => {
+      done()
+    })
+
+    xit("The generated token should contain all the user information", done => {
+      done()
+    })
+  })
   
   describe("API endpoint", () => {
-
-    it("GET /users should return all users in the database", done => {
+    xit("GET /users should return all users in the database with status 200", done => {
       Promise.all([joe.save(), maria.save()]).then(() => {
         User.countDocuments().then((res) => {
           request(server)
@@ -56,7 +85,11 @@ describe("A User", () => {
       })
     })
 
-    it("GET /users/ID should return a single user", done => {
+    xit("GET /users should return an error with status 404 when there are no users in the DB", done => {
+      done()
+    })
+
+    xit("GET /users/ID should return a single user with status 200", done => {
       joe.save().then(() => {
         User.findOne({ _id: joe._id }).then(user1 => {
           request(server)
@@ -79,7 +112,11 @@ describe("A User", () => {
       })
     })
 
-    it("POST /users should write a user to the database based on the request body", done => {
+    xit("GET /users/ID should return an error with status 404 when there is no user with the specified ID", done => {
+      done()
+    })
+
+    xit("POST /users should write a user to the database based on the request body with status 200", done => {
 
       //TODO fix this test
 
@@ -103,7 +140,23 @@ describe("A User", () => {
       })
     })
 
-    it("PUT /users/ will update a specific user based on the request body", done => {
+    xit("POST/users should not post a user if password is not valid with status 401", done => {
+      done()
+    })
+
+    xit("POST/users should not post a user if the email is not of a valid format with status 401", done => {
+      done()
+    })
+
+    xit("POST/users should throw an error when not all fields are given", done => {
+      done()
+    })
+
+    xit("POST/users should throw an error then a field is left empty", done => {
+      done()
+    })
+
+    xit("PUT /users/ should update a specific user based on the request body with status 200", done => {
       joe.save().then(() => {
         User.findOne({ _id: joe._id }).then(user => {
           request(server)
@@ -137,7 +190,11 @@ describe("A User", () => {
       })
     })
 
-    it("DELETE /users/ID will delete a specific user from the database", done => {
+    xit("PUT/users should return 200, even if nothing changed", done => {
+      done()
+    })
+
+    xit("DELETE /users/ID should delete a specific user from the database", done => {
       joe.save().then(() => {
         User.findOne({ _id: joe._id }).then(user => {
           request(server)
@@ -155,6 +212,10 @@ describe("A User", () => {
             })
         })
       })
+    })
+
+    xit("DELETE/users should give status 200 even if nothing was deleted", done => {
+      done()
     })
   })
 })

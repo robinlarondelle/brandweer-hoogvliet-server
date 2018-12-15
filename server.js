@@ -60,7 +60,7 @@ app.use((err, req, res, next) => {
   res.status(err.code || 404).json(err).send();
 })
 
-if (process.env.NODE_ENV !== "test" || "test-cloud") {
+if (process.env.NODE_ENV !== "test" && "test-cloud") {
   app.listen(port, () => {
     console.log("Server is running on port: " + port)
   })

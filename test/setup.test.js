@@ -1,6 +1,4 @@
 const mongoose = require("mongoose")
-const cfg = require("../src/config/config.json")
-
 
 before("Connect to MongoDB", done => {
   if (process.env.NODE_ENV === "test-local") {
@@ -28,19 +26,22 @@ before("Connect to MongoDB", done => {
 })
 
 beforeEach("Clear database", done => {
-  const { users, applications, posts } = mongoose.connection.collections
+  const { 
+    users, 
+    applications, 
+    posts } = mongoose.connection.collections
 
   Promise.all([
     users.deleteMany({ email: { $ne: "admin@admin.nl" } }),
     posts.drop(),
     applications.deleteMany()
   ]).then(() => done())
-    .catch(err => done())
+    .catch(err => done(err))
 })
 
 after("Drop MongoDB and close connection", (done) => {
   mongoose.connection.close(() => {
-    console.log("Closed connection")
+    console.log("Closed connection, finished tests")
     done()
   })
 })

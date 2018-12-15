@@ -33,9 +33,6 @@
     "passport-local": "^1.0.0",
     "supertest": "^3.3.0"
   },
-  "devDependencies": {
-    "cross-env": "^5.2.0"
-  },
   "engines": {
     "node": "10.13.0"
   }

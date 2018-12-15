@@ -1,12 +1,10 @@
 const assert = require("chai").assert
 const request = require("supertest")
-const mongoose = require("mongoose")
 
 const server = require("../server")
 const User = require("../src/models/user.model")
 
 const token = process.env.TOKEN
-
 
 describe("A User", () => {
   describe("API", () => {

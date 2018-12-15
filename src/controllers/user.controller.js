@@ -1,7 +1,6 @@
 const bcrypt = require("bcrypt")
 const User = require("../models/user.model")
 const ApiError = require("../models/apierror.model")
-const cfg = require("../config/config.json")
 const validator = require("../models/validator")
 
 module.exports = {
@@ -65,7 +64,7 @@ module.exports = {
             User.findOne({ email: email }).then(user => {
               bcrypt.compare(newpassword, user.password, (err, success) => {
                 if (success === false) {
-                  User.findByIdAndUpdate({ _id: user._id }, { password: bcrypt.hashSync(newpassword, cfg.SALT) }).then(() => {
+                  User.findByIdAndUpdate({ _id: user._id }, { password: bcrypt.hashSync(newpassword, process.env.SALT) }).then(() => {
                     User.findById({ _id: user._id }).then(user1 => {
                       res.status(200).json(user1).end()
                     }).catch(error => next(new ApiError(`Error: ${error}`, 500)))

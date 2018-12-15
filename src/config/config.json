@@ -1,7 +1,0 @@
-{
-  "DB_TEST_URL": "mongodb://localhost/brandweer_hoogvliet__test_db",
-  "DB_URL": "mongodb://localhost/brandweer-hoogvliet_db",
-  "PORT": 3000,
-  "KEY": "FJIO843209JQP242EWR",
-  "SALT": 10
-}
